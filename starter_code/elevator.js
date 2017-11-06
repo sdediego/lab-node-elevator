@@ -1,8 +1,9 @@
 class Elevator {
   constructor() {
+    this.MAX_FLOOR = 10;
+    this.GROUND_FLOOR = 0;
     this.floor = 0;
     this.direction = '';
-    this.MAXFLOOR = 10;
     this.requests = [];
     this.intervalId = 0;
   }
@@ -12,17 +13,28 @@ class Elevator {
   }
 
   stop() {
-      clearIterval(this.intervalId);
+      clearInterval(this.intervalId);
   }
 
   update() {
       this.log();
   }
+
   _passengersEnter() { }
   _passengersLeave() { }
-  floorUp() { }
-  floorDown() { }
+
+  floorUp() {
+      this.floor < 10 ? this.floor++ : this.floor;
+      this.direction = 'up';
+  }
+
+  floorDown() {
+      this.floor > 0 ? this.floor-- : this.floor;
+      this.direction = 'down';
+  }
+
   call() { }
+  
   log() {
       console.log(`Direction: ${this.direction} | Floor: ${this.floor}`);
   }
